@@ -16,7 +16,7 @@ import Results from './Components/Results'
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/menu' element={<Menu />} />
-          <Route path='/quiz' element={<Quiz key={location.pathname} />}/>
+          <Route path='/quiz' element={<Quiz />}/>
           <Route path='/results' element={<Results />}/>
       </Routes>
     </>
