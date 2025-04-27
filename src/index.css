@@ -1,0 +1,24 @@
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@1&display=swap');
+body {
+  font-family: 'General Sans', sans-serif;
+}
+
+.grad1 {
+  /* height: 200px; */
+  background-image: linear-gradient(to left, #6BCED8, #874C97);
+}
+.grad2 {
+  /* height: 200px; */
+  background-image: linear-gradient(to left, transparent, #6BCED8);
+}
+.flip{
+  animation: flip 0.7s;
+}
+@keyframes flip {
+  from{
+    transform :rotateY(95deg);
+  }
+  to{
+    transform :rotateY(0deg);
+  }
+}
