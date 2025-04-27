@@ -20,11 +20,11 @@ const Results = () => {
 
 <div className="max-w-3xl px-6 md:px-2 flex mx-auto justify-between flex-row-reverse">
    
-    <button className='cursor-pointer'><Link to={'/menu'}><img src="src/images/Group 1.png" alt="" width={30} /></Link></button>
+    <button className='cursor-pointer'><Link to={'/menu'}><img src="/images/Group 1.png" alt="" width={30} /></Link></button>
 </div>
 
     <div className='flex justify-center mt-5'>
-        <img src="src/images/giftbox.png" alt="" />
+        <img src="/images/giftbox.png" alt="" />
     </div>
 
     <div className='font-medium md:mt-16 mt-8 mb-5 max-w-xl px-2 mx-auto text-center text-lg'>

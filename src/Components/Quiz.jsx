@@ -46,8 +46,6 @@ const Quiz = () => {
        if (localStorage.getItem('quizHistory')) {storedQuizzes= JSON.parse(localStorage.getItem('quizHistory'))}
         storedQuizzes.push(currentQuizzes)
         localStorage.setItem('quizHistory', JSON.stringify(storedQuizzes))
-        // setCurrentQuizzes([])
-        // navigate('/results')
         window.location.href = '/results'
     }
     console.log(currentQuizzes[currentQuizIndex]?.options)
@@ -78,7 +76,7 @@ const Quiz = () => {
        {
         isSelected &&
         <p className='w-[30px] h-[30px] rounded-2xl text-lg justify-center bg-[#EDE8E3] absolute flex items-center text-black flip'>
-        <img src="src/images/check.png" alt=""  />
+        <img src="/images/check.png" alt=""  />
         </p>
        }
         <p className='text-sm ms-12'> 
@@ -96,7 +94,7 @@ const Quiz = () => {
     <div className="max-w-3xl px-6 md:px-2 flex mx-auto justify-between">
         <div></div>
         <div className='font-medium'>Quiz Flow</div>
-        <button className='cursor-pointer'><img src="src/images/Group 1.png" alt="" width={30} onClick={()=> window.location.href= '/menu'} /></button>
+        <button className='cursor-pointer'><img src="/images/Group 1.png" alt="" width={30} onClick={()=> window.location.href= '/menu'} /></button>
     </div>
                 <main className='flex justify-center items-center mt-2 md:hidden'>
                    <div className='flex items-center space-x-3'>

@@ -27,7 +27,7 @@ const Home = () => {
         </div>
       </main>
       <div className='text-9xl ps-16'>
-        <img src="/src/images/Statistics.png" className='w-12/12' alt="" />
+        <img src="/images/Statistics.png" className='w-12/12' alt="" />
       </div>
     </div>
   </section>
