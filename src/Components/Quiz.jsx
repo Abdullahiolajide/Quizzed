@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { data } from '../database/database'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Quiz = () => {
    const [quizIndices, setQuizIndices] = useState(()=>setIndices())
    const [currentQuizIndex, setCurrentQuizIndex] = useState(0)
    const [currentQuizzes, setCurrentQuizzes] = useState([])
 
-       useEffect(()=>{
-        setCurrentQuizzes(
-            quizIndices.map((number)=>(
-            data.find((quiz, i)=> i == number))))
-       }, [])
+console.log("above", currentQuizzes)
+// Getting the random quiz questions using randomly generated quizex from function setIndices
+useEffect(()=>{
+    setCurrentQuizzes(
+        quizIndices.map((number)=>(
+            data.find((quiz, i)=> i == number)))
+        )
+        }, [])
+        
+        console.log("below", currentQuizzes)
+
        
        const alphabets = ['A', 'B', 'C', 'D', 'E', 'F']
-       const answeredQuiz = currentQuizzes.filter((quiz)=> quiz.userAnswer)
-    //    console.log(answeredQuiz)
-       const navigate = useNavigate()
-    // console.log(data)    
-   function setIndices (){
-       const newArray = []
-    for (let i = 0; newArray.length < 5 ; i++) {
-        const randomNumber = Math.floor(Math.random() * data.length)
-        const isDuplicate = newArray.find(index => randomNumber === index)
-        if(!isDuplicate){
-            newArray.push(randomNumber)
+       console.log(currentQuizzes)
+       const answeredQuiz = currentQuizzes.length > 0 ? currentQuizzes.filter((quiz)=> quiz.userAnswer) : []
+       const navigate = useNavigate() 
+
+
+
+// Setting Random number sor random questinos to bee Delayed;
+        function setIndices (){
+            const newArray = []
+            for (let i = 0; newArray.length < 5 ; i++) {
+                const randomNumber = Math.floor(Math.random() * data.length)
+                const isDuplicate = newArray.find(index => randomNumber === index)
+                if(!isDuplicate){
+                    newArray.push(randomNumber)
+                }
+                
+            }
+            return newArray
         }
-        
-    }
-    return newArray
-   }
 
 
     const changeQuizIndex =(goTo)=>{
@@ -41,25 +50,52 @@ const Quiz = () => {
             setCurrentQuizIndex(prev=> prev-1)
         }
     }
+
+
+    //
     const submit = ()=>{
         let storedQuizzes = []
        if (localStorage.getItem('quizHistory')) {storedQuizzes= JSON.parse(localStorage.getItem('quizHistory'))}
         storedQuizzes.push(currentQuizzes)
         localStorage.setItem('quizHistory', JSON.stringify(storedQuizzes))
-        window.location.href = '/results'
+        setCurrentQuizzes([])
+        navigate('/results', {replace: true})
     }
-    console.log(currentQuizzes[currentQuizIndex]?.options)
+
+    //
     if(!currentQuizzes[currentQuizIndex]?.options){
         return
     }
+
+
     const options = currentQuizzes[currentQuizIndex].options.map((option, i)=>{
+
         const saveUserAnswer = ()=>{
             setCurrentQuizzes(prevQuizzes=> {
                 let newArray = []
-                prevQuizzes[currentQuizIndex].userAnswer = option
+                prevQuizzes[currentQuizIndex]= {
+                    ...prevQuizzes[currentQuizIndex],
+                    userAnswer: option
+                }               
                 newArray.push( ...prevQuizzes)
                 return newArray
+                // [...prevQuizzes, 
+                //     {
+                //         ...prevQuizzes[currentQuizIndex],
+                //             userAnswer: option
+                //     }
+                // ]
             })
+
+
+            // setCurrentQuizzes(prevQuizzes => {
+            //     const updatedQuizzes = [...prevQuizzes];
+            //     updatedQuizzes[currentQuizIndex] = {
+            //       ...updatedQuizzes[currentQuizIndex],
+            //       userAnswer: option,
+            //     };
+            //     return updatedQuizzes;
+            //   });
             
             
         }
@@ -70,9 +106,12 @@ const Quiz = () => {
         <button key={i} className={`flex duration-200 items-center p-3 space-x-4 w-9/12 rounded-md mx-auto border border-gray-500  hover:cursor-pointer ${isSelected ? 'bg-[#31CD63] text-white' :'hover:bg-gray-200'}`}
         onClick={saveUserAnswer}
         >
+            {/* Alphabets for Options  */}
         <p className={`w-[30px] h-[30px] rounded-2xl text-lg justify-center bg-[#EDE8E3] absolute flex items-center text-black 
             ${isSelected ? 'flip' :''}
             `}>{alphabets[i]}</p>
+       
+            {/* Check Icon after option is Selected */}
        {
         isSelected &&
         <p className='w-[30px] h-[30px] rounded-2xl text-lg justify-center bg-[#EDE8E3] absolute flex items-center text-black flip'>
@@ -81,7 +120,6 @@ const Quiz = () => {
        }
         <p className='text-sm ms-12'> 
             {option}
-            {currentQuizzes[currentQuizIndex.userAnswer]}
 
         </p>
     </button>
@@ -134,7 +172,7 @@ const Quiz = () => {
                     ?
                     (
 
-                        <button className='bg-[#31CD63] px-4 py-3 rounded-md text-white my-4 md:w-12/12 w-90 mx-auto disabled:bg-gray-300  npm run decursor-pointer disabled:cursor-disabled 'onClick={submit}>Finish</button>
+                        <button className='bg-[#31CD63] px-4 py-3 rounded-md text-white my-4 md:w-12/12 w-90 mx-auto disabled:bg-gray-300  npm run decursor-pointer disabled:cursor-disabled ' onClick={submit}>Finish</button>
                     )
                     :
 
