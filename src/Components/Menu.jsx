@@ -6,6 +6,7 @@ const Context = React.createContext()
 const Menu = () => {
   const navigate = useNavigate()
   const storedQuizzes = JSON.parse(localStorage.getItem('quizHistory'))
+  if(!storedQuizzes[0].time){localStorage.clear('quizHistory')}
   const quizHistories = storedQuizzes ? storedQuizzes.map((quiz, i)=>(
     <div onClick={()=> navigate(`/review/${i}`)} className='hr mx-2 px-1 rounded-lg bg-gray-100 mt-2 active:mx-3 hover:bg-gray-200 px-2 py-1 cursor-pointer hover:bg-gray-100 duration-150' key={i}>
       
