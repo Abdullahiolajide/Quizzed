@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     // <img src="/src/images/Results.png" className='' alt="" />
   return (
-   <div className='w-[100vw] h-[100vh] bg-gradient-to-r from-[#0F172A] to-[#1E293B]'>
+   <div className='w-[100vw] h-[100dvh] bg-gradient-to-r from-[#0F172A] to-[#1E293B]'>
   <section className='bg-transparent flex'>
     <div className='h-[100vh] w-[30px] bg-emerald-500'></div>
     <div className='flex flex-col justify-between'>
