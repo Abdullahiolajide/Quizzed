@@ -10,7 +10,7 @@ const Results = () => {
         navigate('/menu')
     }
   }, [])
-  const correctAnswers = storedHistory[storedHistory.length -1].filter(question=> question.answer === question.userAnswer)
+  const correctAnswers = storedHistory[storedHistory.length -1].history.filter(question=> question.answer === question.userAnswer)
   console.log(storedHistory[storedHistory.length -1].length)
 
 
@@ -40,7 +40,7 @@ const Results = () => {
                 </span>
                 <span>TOTAL QUESTIONS</span>
             </p>
-            <p>{storedHistory[storedHistory.length -1].length}</p>
+            <p>{storedHistory[storedHistory.length -1].history.length}</p>
         </div>
         <hr className='border-white border-2'/>
         <div className='flex w-80 md:w-100 justify-between px-5 py-2'>

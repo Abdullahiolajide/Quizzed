@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
 const Home = () => {
     // <img src="/src/images/Results.png" className='' alt="" />
   return (
@@ -31,9 +32,13 @@ const Home = () => {
       </div>
     </div>
   </section>
+
+
+
+    
 </div>
 
   )
 }
 
-export default Home
+export default Home 

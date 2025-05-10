@@ -5,6 +5,7 @@ import Quiz from './Components/Quiz'
 import Home from './Components/Home'
 import Menu from './Components/Menu'
 import Results from './Components/Results'
+import QuizReview from './Components/QuizReview'
 
 
 
@@ -16,8 +17,9 @@ import Results from './Components/Results'
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/menu' element={<Menu />} />
-          <Route path='/quiz' element={<Quiz />}/>
-          <Route path='/results' element={<Results />}/>
+        <Route path='/quiz' element={<Quiz />}/>
+        <Route path='/results' element={<Results />}/>
+        <Route path='review/:id' element={<QuizReview />} />
       </Routes>
     </>
   )
