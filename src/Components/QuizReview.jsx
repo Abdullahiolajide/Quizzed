@@ -26,7 +26,7 @@ const QuizReview = () => {
                 quiz.options.map((option, i)=>{
                   const correct = quiz.answer === option && quiz.answer === quiz.userAnswer
                   return(
-                     <OptionCard index={i} isSelected={correct || option === quiz.answer} className={quiz.userAnswer == option && !correct ? 'hover:bg-red-900 bg-red-900 text-white':''}>
+                     <OptionCard index={i} isSelected={correct || option === quiz.answer} className={quiz.userAnswer == option && !correct ? 'hover:bg-red-900 bg-red-600 text-white':''}>
                         <OptionCard.Icon /> 
                         <OptionCard.Text>
                           {option} 
@@ -66,7 +66,7 @@ const QuizReview = () => {
             <div className='flex items-center justify-between mx-auto max-w-2xl'>
              
                 <div className='w-11/12 md:w-12/12 mx-auto md:mx-3 flex justify-center gap-2 '>
-                <button className='bg-[#31CD63] px-4 py-3 rounded-md text-white my-4 md:w-12/12 w-90 mx-auto disabled:bg-gray-300  hover:cursor-pointer disabled:cursor-disabled '>Previous</button>
+                <button className='bg-[#31CD63] px-4 py-3 rounded-md text-white my-4 md:w-12/12 w-90 mx-auto disabled:bg-gray-300  hover:cursor-pointer disabled:cursor-disabled ' onClick={()=> navigate('/menu')}>Finish Review</button>
             </div>
             </div>
 
