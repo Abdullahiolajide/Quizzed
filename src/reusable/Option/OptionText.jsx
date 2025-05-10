@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 
 const OptionText = ({children}) => {
   return (
-    <p className='text-sm ms-12'> 
+    <p className='text-sm ms-12 text-left'> 
     {children}
 
     </p>
