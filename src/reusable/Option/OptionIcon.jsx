@@ -7,7 +7,7 @@ const OptionIcon = () => {
   return (
     <>
                 <p 
-                 className={`w-[30px] h-[30px] rounded-2xl text-lg justify-center bg-[#EDE8E3] absolute flex items-center text-black 
+                 className={`w-[30px] h-[30px] rounded-2xl text-lg justify-center bg-gray-100 absolute flex items-center text-black 
                         ${isSelected ? 'flip' :''}
                     `}>
                         {alphabets[index]}
