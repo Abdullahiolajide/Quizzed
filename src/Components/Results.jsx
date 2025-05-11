@@ -6,12 +6,10 @@ const Results = () => {
     const navigate = useNavigate()
   useEffect(()=>{
     if(!storedHistory){
-        console.log('d')
         navigate('/menu')
     }
   }, [])
   const correctAnswers = storedHistory[storedHistory.length -1].history.filter(question=> question.answer === question.userAnswer)
-  console.log(storedHistory[storedHistory.length -1].length)
 
 
   return (
