@@ -10,9 +10,10 @@ const Quiz = () => {
     const [quizIndices, setQuizIndices] = useState(()=>setIndices())
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0)
     const [currentQuizzes, setCurrentQuizzes] = useState([])
+    const navigate = useNavigate() 
     
     // Getting the random quiz questions using randomly generated quizex from function setIndices
-    const navigate = useNavigate() 
+    const answeredQuiz = currentQuizzes.length > 0 ? currentQuizzes.filter((quiz)=> quiz.userAnswer) : []
     useEffect(()=>{
     async function setQuizData(){
         const getQuizData = await getData()
@@ -29,14 +30,7 @@ const Quiz = () => {
                 )
            }
     }, [data, quizIndices])
-
-    if (data.length< 1) {
-        console.log('not')
-        return
-    }
         
-
-       const answeredQuiz = currentQuizzes.length > 0 ? currentQuizzes.filter((quiz)=> quiz.userAnswer) : []
 
 
 
