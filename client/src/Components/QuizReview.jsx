@@ -26,7 +26,7 @@ const QuizReview = () => {
                 quiz.options.map((option, i)=>{
                   const correct = quiz.answer === option && quiz.answer === quiz.userAnswer
                   return(
-                     <OptionCard index={i} isSelected={correct || option === quiz.answer} className={quiz.userAnswer == option && !correct ? 'hover:bg-red-900 bg-red-600 text-white':''}>
+                     <OptionCard key={i} index={i} isSelected={correct || option === quiz.answer} className={quiz.userAnswer == option && !correct ? 'hover:bg-red-900 bg-red-600 text-white':''}>
                         <OptionCard.Icon /> 
                         <OptionCard.Text>
                           {option} 

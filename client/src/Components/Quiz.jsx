@@ -7,46 +7,55 @@ import { getData } from '../../api'
 
 const Quiz = () => {
     const [data, setData] = useState([])
-    const [quizIndices, setQuizIndices] = useState(()=>setIndices())
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0)
     const [currentQuizzes, setCurrentQuizzes] = useState([])
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate() 
     
     // Getting the random quiz questions using randomly generated quizex from function setIndices
-    const answeredQuiz = currentQuizzes.length > 0 ? currentQuizzes.filter((quiz)=> quiz.userAnswer) : []
+    const answeredQuiz = React.useMemo(()=>{
+       return currentQuizzes.length > 0 ? currentQuizzes.filter((quiz)=> quiz.userAnswer) : []
+    }, [currentQuizzes])
     useEffect(()=>{
     async function setQuizData(){
         const getQuizData = await getData()
         setData(getQuizData)
     }
     setQuizData()
+    
         }, [])
 
-    useEffect(()=>{
-           if(data.length > 0){
+        useEffect(()=>{
+            const quizLength = 5
+                if(data.length < quizLength){
+                    return 
+                }
+            function setIndices (){
+                const Indices = []
+            for (let i = 0; Indices.length < quizLength ; i++) {
+                const randomNumber = Math.floor(Math.random() * data.length)
+                if(!Indices.includes(randomNumber)){
+                    Indices.push(randomNumber)
+                }
+                
+            }
+            return Indices
+        }
+        const Indices = setIndices()
+        
+    //    setQuizIndices( setIndices())
+
              setCurrentQuizzes(
-                quizIndices.map((number)=>(
-                    data.find((quiz, i)=> i == number)))
+                      Indices.map((i)=> data[i])
                 )
-           }
-    }, [data, quizIndices])
+                setLoading(false)
+    }, [data])
+
         
 
 
 
 // Setting Random number sor random questinos to bee Delayed;
-        function setIndices (){
-            const newArray = []
-            for (let i = 0; newArray.length < 5 ; i++) {
-                const randomNumber = Math.floor(Math.random() * data.length)
-                const isDuplicate = newArray.find(index => randomNumber === index)
-                if(!isDuplicate){
-                    newArray.push(randomNumber)
-                }
-                
-            }
-            return newArray
-        }
 
 
     const changeQuizIndex =(goTo)=>{
@@ -90,12 +99,11 @@ const Quiz = () => {
 
         const saveUserAnswer = ()=>{
             setCurrentQuizzes(prevQuizzes=> {
-                let newArray = []
-                prevQuizzes[currentQuizIndex]= {
-                    ...prevQuizzes[currentQuizIndex],
+                let newArray = [...prevQuizzes]
+                newArray[currentQuizIndex]= {
+                    ...newArray[currentQuizIndex],
                     userAnswer: option
                 }               
-                newArray.push( ...prevQuizzes)
                 return newArray
             })
             
@@ -111,6 +119,10 @@ const Quiz = () => {
         </OptionCard>
        )
 }) 
+
+        if (data.length < 1 || loading) {
+            return <h1>Loading...</h1>
+        }
 
   return (
     <div className='w-12/12 pt-12 mx-auto '>

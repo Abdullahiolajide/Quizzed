@@ -1,4 +1,4 @@
-const endpoint = "https://quizzed-rvo8.onrender.com/"
+const endpoint = "http://localhost:2000/"
     async function getData (){
         try{
         const response = await fetch(endpoint)
