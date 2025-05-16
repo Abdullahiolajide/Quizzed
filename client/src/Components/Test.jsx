@@ -7,12 +7,12 @@ export default function Test (){
     useEffect(()=>{
         const endpoint = "http://localhost:2000/"
         async function getData (){
+            try{
            const response = await fetch(endpoint)
 
            if(!response.ok){
             throw new Error('Error Occured')
            }
-            try{
                 const data = await response.json();
                 console.log(data) 
             }catch(error){

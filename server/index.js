@@ -8,7 +8,7 @@ const cors = require('cors')
 app.use(cors())
 
 app.get('/', (req, res)=>{
-    res.json(datja)
+    res.json(data)
 })
 
 app.listen(PORT, ()=> console.log(`Server is running a http://localhost:${PORT}`))
