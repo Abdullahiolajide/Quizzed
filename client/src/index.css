@@ -48,3 +48,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.spinner{
+  width: 40px;
+  height: 40px;
+  border: 5px solid green;
+  border-radius: 100px;
+  border-top: 5px solid transparent;
+  margin: auto;
+  margin-top: 200px;
+  animation: spinner 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes spinner {
+  from{
+    transform: rotate(0);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}

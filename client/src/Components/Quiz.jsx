@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import OptionCard from '../reusable/Option/index'
 import getCurrentTime12Hour from '../utils/getCurrent12Hour'
 import { getData } from '../../api'
+import Spinner from '../reusable/Spinner/Spinner'
 
 const Quiz = () => {
     const [data, setData] = useState([])
@@ -18,6 +19,7 @@ const Quiz = () => {
     }, [currentQuizzes])
     useEffect(()=>{
     async function setQuizData(){
+        console.log(loading)
         const getQuizData = await getData()
         setData(getQuizData)
     }
@@ -67,22 +69,22 @@ const Quiz = () => {
             setCurrentQuizIndex(prev=> prev-1)
         }
     }
-
-
+    
+    
     //
     const submit = ()=>{
         const date = new Date()
         let storedQuizzes = []
-       if (localStorage.getItem('quizHistory')) {storedQuizzes= JSON.parse(localStorage.getItem('quizHistory'))}
+        if (localStorage.getItem('quizHistory')) {storedQuizzes= JSON.parse(localStorage.getItem('quizHistory'))}
         storedQuizzes.push(
             
-                {
+            {
 
-                    time:getCurrentTime12Hour(), 
+                time:getCurrentTime12Hour(), 
                     history: currentQuizzes
                 }
                 
-            
+                
         )
         localStorage.setItem('quizHistory', JSON.stringify(storedQuizzes))
         setCurrentQuizzes([])
@@ -90,6 +92,9 @@ const Quiz = () => {
     }
 
     //
+    if (data.length < 1 || loading) {
+        return <Spinner />
+    }
     if(!currentQuizzes[currentQuizIndex]?.options){
         return
     }
@@ -120,9 +125,6 @@ const Quiz = () => {
        )
 }) 
 
-        if (data.length < 1 || loading) {
-            return <h1>Loading...</h1>
-        }
 
   return (
     <div className='w-12/12 pt-12 mx-auto '>
